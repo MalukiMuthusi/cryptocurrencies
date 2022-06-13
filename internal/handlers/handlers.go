@@ -13,6 +13,9 @@ func SetUpRouter(store store.Store, debugPrintRoute DebugPrintRouteFunc) *gin.En
 	// log the endpoints
 	gin.DebugPrintRouteFunc = debugPrintRoute
 
+	list := List{Store: store}
+	r.GET("list", list.Handle)
+
 	return r
 }
 

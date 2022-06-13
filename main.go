@@ -88,7 +88,7 @@ func init() {
 
 	viper.SetDefault(utils.Port, "8080")
 
-	CheckMustBeSetEnvs()
+	CheckMustBeSetEnvs([]string{utils.FaunaSecret})
 }
 
 // BindEnvs bind environment variables to specific names
@@ -99,7 +99,11 @@ func BindEnvs() {
 }
 
 // CheckMustBeSetEnvs ensures that the provided envs have been set
-func CheckMustBeSetEnvs() {
+func CheckMustBeSetEnvs(envs []string) {
+
+	for _, v := range envs {
+		EnvMustBeSet(v)
+	}
 
 }
 
