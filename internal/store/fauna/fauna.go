@@ -23,18 +23,16 @@ func New() (*Fauna, error) {
 }
 
 // List cryptocurrencies
-func (f Fauna) List(c context.Context) ([]*models.Cryptocurrency, error) {
+func (f Fauna) List(c context.Context) ([]*models.ListRes, error) {
 
-	faunadb.Map(faunadb.Paginate(faunadb.Documents(faunadb.Collection("cryptocurrencies"))), faunadb.Lambda("ref", faunadb.Var("ref")))
-
-	res, err := f.Client.Query(faunadb.Paginate(faunadb.Documents(faunadb.Collection("cryptocurrencies"))))
+	res, err := f.Client.Query(faunadb.Map(faunadb.Paginate(faunadb.Documents(faunadb.Collection("cryptocurrencies"))), faunadb.Lambda("ref", faunadb.Get(faunadb.Var("ref")))))
 
 	if err != nil {
 		logger.Log.Info(err)
 		return nil, err
 	}
 
-	var cryptocurrencies []*models.Cryptocurrency
+	var cryptocurrencies []*models.ListRes
 
 	logger.Log.Info(res)
 

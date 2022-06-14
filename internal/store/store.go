@@ -8,5 +8,5 @@ import (
 
 // Store encapsulates the storage used by the service
 type Store interface {
-	List(c context.Context) ([]*models.Cryptocurrency, error)
+	List(c context.Context) ([]*models.ListRes, error)
 }
