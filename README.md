@@ -2,6 +2,8 @@
 
 A tutorial on building API using Google Cloud Platform(GCP) and [Fauna](1).
 
+Deploy to Google Cloud Platform
+
 ## References
 
 [1]: https://docs.fauna.com/
