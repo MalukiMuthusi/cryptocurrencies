@@ -2,11 +2,11 @@ package fauna
 
 import (
 	"context"
+	"os"
 
-	"github.com/MalukiMuthusi/cryptocurrencies/internal/logger"
-	"github.com/MalukiMuthusi/cryptocurrencies/internal/models"
+	"github.com/MalukiMuthusi/cryptocurrencies/logger"
+	"github.com/MalukiMuthusi/cryptocurrencies/models"
 	"github.com/fauna/faunadb-go/v4/faunadb"
-	"github.com/spf13/viper"
 )
 
 // Fauna database
@@ -17,7 +17,7 @@ type Fauna struct {
 // New creates a new client connection to the Fauna database
 func New() (*Fauna, error) {
 
-	client := faunadb.NewFaunaClient(viper.GetString("FAUNA_SECRET"))
+	client := faunadb.NewFaunaClient(os.Getenv("FAUNA_SECRET"))
 
 	return &Fauna{Client: client}, nil
 }

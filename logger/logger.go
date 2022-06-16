@@ -3,7 +3,6 @@ package logger
 import (
 	"os"
 
-	"github.com/MalukiMuthusi/cryptocurrencies/internal/utils"
 	"github.com/sirupsen/logrus"
 )
 
@@ -13,7 +12,7 @@ var Log *logrus.Logger
 func init() {
 	Log = logrus.New()
 
-	env := os.Getenv(utils.AppName)
+	env := os.Getenv("CRYPTOCURRENCIES")
 
 	Log.SetReportCaller(true)
 
